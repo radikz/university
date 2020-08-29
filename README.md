@@ -1,4 +1,3 @@
-An example ASP.NET CORE MVC with WEB API
 ![Index](Screenshots/asp1.png)
 
 ![Edit](Screenshots/asp2.png)
