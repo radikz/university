@@ -1,0 +1,85 @@
+@model IEnumerable<university.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">
+        <button type="button" class="btn btn-primary">Create New</button>
+    </a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Pencarian: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills)
+                
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TotalStudentParm"]">@Html.DisplayNameFor(model => model.TotalStudents)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SalaryParm"]">@Html.DisplayNameFor(model => model.Salary)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.AddedOn)</a>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalStudents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedOn)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">
+                    <button type="button" class="btn btn-success">Edit</button>
+                </a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    <button type="button" class="btn btn-info">Info</button>
+                </a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
